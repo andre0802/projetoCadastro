@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="pessoas">
+
+<head>
+    <title>Cadastro de Pessoas</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/estilo.css">
+</head>
+
+<body ng-controller="pessoasCtrl">
+    <!-- Menu -->
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand">Cadastro</a>
+        </div>
+        </div>
+    </nav>
+    <!-- Fim Menu -->
+
+    <!-- Cabeçalho -->
+    <div class="jumbotron" style="height:150px;">
+        <div class="container text-center x">
+            <h1 class="x">Cadastro de Pessoas</h1>
+        </div>
+        <!-- Fim Cabeçalho -->
+
+        <!-- Consulta -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">Consulta</span>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pessoa in pessoas">
+                            <td ng-bind="pessoa.nome"></td>
+                            <td ng-bind="pessoa.cpf"></td>
+                            <td ng-bind="pessoa.telefone"></td>
+                            <td ng-bind="pessoa.email"></td>
+                            <td>
+                                <button ng-click="apagar($index)">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-success" ng-click="showme=true">Cadastrar Pessoa</button>
+            </div>
+        </div>
+        <!-- Consulta -->
+
+        <!-- Cadastro -->
+        <div id="form" ng-show="showme">
+            <form name="formCadastro" class="form-horizontal">
+                <fieldset>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Formulário</div>
+
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Nome
+                                    <h11>*</h11>
+                                </label>
+                                <div class="col-md-8">
+                                    <input id="nome" ng-model="pessoa.nome" required class="form-control input-md" type="text">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">CPF
+                                    <h11>*</h11>
+                                </label>
+                                <div class="col-md-2">
+                                    <input id="cpf" required placeholder="Apenas números" ng-model="pessoa.cpf" data-mask="999.999.999-99" class="form-control input-md" type="text" maxlength="11">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-md-1 control-label">Telefone
+                                        <h11>*</h11>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-earphone"></i>
+                                            </span>
+                                            <input id="telefone" name="telefone" ng-model="pessoa.telefone" class="form-control" data-mask="(00) 0000-0000" placeholder="XX XXXXX-XXXX" type="text"
+                                                maxlength="13">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Email
+                                        <h11>*</h11>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-envelope"></i>
+                                            </span>
+                                            <input id="email" name="email" required ng-model="pessoa.email" class="form-control" placeholder="email@email.com" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label"></label>
+                            <div class="col-md-8">
+                                <button class="btn btn-success" ng-click="add(pessoa)" ng-disabled="formCadastro.$invalid" ng-click="showme=true">Salvar Cadastro</button>
+                            </div>
+                        </div>
+
+                    </div>
+        </div>
+
+        </fieldset>
+        </form>
+    </div>
+    <!-- Fim Cadastro -->
+
+    </div>
+</body>
+<script src="lib/angular.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous"></script>
+<script src="lib/jquery.mask.min.js"></script>
+<script src="lib/script.js"></script>
+
+</html>
